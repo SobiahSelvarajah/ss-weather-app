@@ -1,6 +1,9 @@
 import { getWeather } from "@/lib/getWeather";
+import { getMood } from "@/lib/getMood";
 import WeatherDisplay from "@/components/WeatherDisplay";
 import MoodDisplay from "@/components/MoodDisplay";
+import MusicDisplay from "@/components/MusicDisplay";
+
 
 export default async function Home() {
 
@@ -8,6 +11,8 @@ export default async function Home() {
 
   // extract main weather condition
   const weatherMain = weather.weather[0].main;
+
+  const { mood } = getMood(weatherMain);
 
   return (
     <main className="flex min-h-screen items-center 
@@ -24,6 +29,9 @@ export default async function Home() {
 
         {/* mood display based on weather */}
         <MoodDisplay weatherMain={weatherMain} />
+
+        {/* music display based on mood */}
+        <MusicDisplay mood={mood} />
       </div>
     </main>
   );
