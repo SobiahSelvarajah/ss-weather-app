@@ -1,13 +1,14 @@
 "use client"
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
-export default function SearchBar() {
+interface SearchBarProps {
+    onSearch: (location: string) => void;
+}
+
+export default function SearchBar({onSearch}: SearchBarProps) {
 
     const [location, setLocation] = useState("");
-    const router = useRouter();
-
     const handleSearch = (e: React.SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -20,7 +21,8 @@ export default function SearchBar() {
                                 )
                                 .join(",");
 
-        router.push(`/?location=${encodeURIComponent(cleanedSearch)}`);
+        onSearch(cleanedSearch);
+        setLocation("");
     };
 
     return (
