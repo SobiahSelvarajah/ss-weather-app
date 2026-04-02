@@ -45,7 +45,10 @@ export default function OutfitDisplay({ weather, mood, temp }: OutfitProps) {
                 {hasGenerated ? "Regenerate Outfit" : "Get Outfit Suggestion"}
             </button>
             {hasGenerated && (
-                <div className="mt-6 w-full max-w-md p-6 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl transition-all duration-500">
+                <div className="mt-6 w-full max-w-md p-6 rounded-2xl 
+                                bg-white/10 backdrop-blur-lg border 
+                                border-white/20 shadow-xl 
+                                transition-all duration-500">
                     {loading ? (
                         <p className="text-center text-sm opacity-70">
                             Generating outfit ideas
