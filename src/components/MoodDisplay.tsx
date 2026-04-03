@@ -9,7 +9,7 @@ export default function MoodDisplay({ weatherMain }: MoodDisplayProps) {
     const { mood, activity } = getMood(weatherMain);
 
     return (
-        <div className="text-center space-y-2 mt-6">
+        <div className="space-y-2 mt-10">
             <p className="text-xl capitalize">
                 Mood: {mood}
             </p>

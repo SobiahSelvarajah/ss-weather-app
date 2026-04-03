@@ -34,30 +34,64 @@ export default function Home() {
 
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-slate-900 text-white">
-      <div>
-        <h1 className="text-5xl font-light text-center mb-6">
-          Weather Forecast
-        </h1>
+    <main className="flex min-h-screen items-start md:items-center justify-center bg-slate-900 text-white px-5 py-10 md:px-8">
+      
+      <div className="w-full max-w-5xl space-y-8 md:space-y-12">
 
-        {/* search bar to access weather for location */}
-        <SearchBar onSearch={handleSearch} />
+        {/* header */}
+        <div className="text-center space-y-3">
+          <h1 className="text-5xl font-light">
+            Weather Forecast
+          </h1>
 
-        {/* loading state */}
-        {loading && <p className="text-center mt-4">Loading...</p>}
+          {weather && (
+            <h2 className="text-lg text-white/60 tracking-wide uppercase">
+              {location}
+            </h2>
+          )}
+        </div>
 
-        {/* existing weather display */}
-        {weather && <WeatherDisplay weather={weather} />}
+        {/* search bar */}
+        <div className="flex justify-center">
+          <SearchBar onSearch={handleSearch} />
+        </div>
 
-        {/* mood display based on weather */}
-        {weather && <MoodDisplay weatherMain={weather.weather[0].main} />}
+        {/* loading element */}
+        {loading && (
+          <p className="text-center text-white/60 animate-pulse">
+            Loading weather...
+          </p>
+        )}
 
-        {/* music display based on mood */}
-        {weather && <MusicDisplay mood={mood} />}
+        {/* main content */}
+        {weather && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-start">
 
-        {/* outfit suggestion based on weather, mood and temp */}
-        {weather && <OutfitDisplay weather={weather.weather[0].main} mood={mood} temp={temp}/>}
+            {/* desktop left */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left gap-6">
+              <div className="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5 md:p-6 shadow-lg shadow-black/20">
+                <WeatherDisplay weather={weather} />
+              </div>
+              <div className="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5 md:p-6 shadow-lg shadow-black/20">
+                <MoodDisplay weatherMain={weather.weather[0].main} />
+              </div>
+            </div>
 
+            {/* desktop right */}
+            <div className="flex flex-col items-center md:items-end text-center md:text-right gap-6">
+              <div className="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5 md:p-6 shadow-lg shadow-black/20">
+                <MusicDisplay mood={mood} />
+              </div>
+              <div className="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5 md:p-6 shadow-lg shadow-black/20">
+                <OutfitDisplay
+                  weather={weather.weather[0].main}
+                  mood={mood}
+                  temp={temp}
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </main>
   );

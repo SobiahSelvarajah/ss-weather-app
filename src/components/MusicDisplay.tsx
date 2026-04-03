@@ -9,11 +9,11 @@ export default function MusicDisplay({ mood }: MusicDisplayProps) {
     const { song, artist, embedUrl } = getMusic(mood);
 
     return (
-        <div className="mt-6 text-center space-y-4">
+        <div className="space-y-5 flex flex-col items-center md:items-end">
             <p className="text-lg">
                 🎵 Song of the moment
             </p>
-            <p className="text-xl font-semibold">
+            <p className="text-xl font-semibold text-center md:text-right">
                 {song} — {artist}
             </p>
             {embedUrl && (
@@ -22,7 +22,7 @@ export default function MusicDisplay({ mood }: MusicDisplayProps) {
                 width="300"
                 height="80"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                className="mx-auto rounded-lg"
+                className="rounded-lg"
             />
             )}
         </div>

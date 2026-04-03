@@ -6,10 +6,7 @@ type WeatherProps = {
 
 export default function WeatherDisplay({ weather }: WeatherProps) {
     return (
-        <div className="text-center space-y-4">
-            <p className="text-xl">
-                {weather.name}
-            </p>
+        <div className="space-y-5">
             <p className="text-5xl font-semibold">
                 {Math.round(weather.main.temp)}°C
             </p>

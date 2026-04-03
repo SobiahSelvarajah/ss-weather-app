@@ -40,21 +40,18 @@ export default function OutfitDisplay({ weather, mood, temp }: OutfitProps) {
         <div>
             <button
                 onClick={generateOutfit}
-                className="px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 transition duration-300 text-sm font-light"
+                className="px-10 py-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 transition duration-300 text-sm font-light"
             >
                 {hasGenerated ? "Regenerate Outfit" : "Get Outfit Suggestion"}
             </button>
             {hasGenerated && (
-                <div className="mt-6 w-full max-w-md p-6 rounded-2xl 
-                                bg-white/10 backdrop-blur-lg border 
-                                border-white/20 shadow-xl 
-                                transition-all duration-500">
+                <div className="mt-5 w-full max-w-md p-5 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl transition-all duration-500">
                     {loading ? (
-                        <p className="text-center text-sm opacity-70">
+                        <p className="text-center md:text-right text-sm opacity-70">
                             Generating outfit ideas
                         </p>
                     ) : (
-                        <p className="text-center text-sm leading-relaxed">
+                        <p className="text-center md:text-right text-sm leading-relaxed">
                             {outfit}
                         </p>
                     )}
