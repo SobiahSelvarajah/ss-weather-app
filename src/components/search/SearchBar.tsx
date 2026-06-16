@@ -1,18 +1,24 @@
 "use client";
 
 import { useState } from "react";
+import { getWeather } from "@/services/WeatherService";
 
 
 export default function SearchBar() {
 
     const [location, setLocation] = useState("");
 
-    const handleSubmit = (e: {preventDefault: () => void}) => {
+    const handleSubmit = async (e: {preventDefault: () => void}) => {
         e.preventDefault();
 
         if(!location.trim()) return;
 
-        console.log(location);
+        try {
+            const weather = await getWeather(location);
+            console.log(weather);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
 
