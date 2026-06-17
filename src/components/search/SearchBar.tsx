@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { getWeather } from "@/services/WeatherService";
 
+type SearchBarProps = {
+    onSearch: (location: string) => Promise<void>;
+};
 
-export default function SearchBar() {
+export default function SearchBar({onSearch}: SearchBarProps) {
 
     const [location, setLocation] = useState("");
 
@@ -14,8 +16,7 @@ export default function SearchBar() {
         if(!location.trim()) return;
 
         try {
-            const weather = await getWeather(location);
-            console.log(weather);
+            await onSearch(location);
         } catch (error) {
             console.error(error);
         }
