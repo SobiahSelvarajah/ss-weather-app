@@ -10,6 +10,9 @@ type WeatherData = {
   city: string;
   temperature: number;
   condition: string;
+  feelsLike: number,
+  humidity: number,
+  windSpeed: number
 };
 
 export default function Home() {
@@ -29,6 +32,9 @@ export default function Home() {
         city: data.name,
         temperature: data.main.temp,
         condition: data.weather[0].main,
+        feelsLike: data.main.feels_like,
+        humidity: data.main.humidity,
+        windSpeed: data.wind.speed,
       });
     } catch(error) {
       console.error(error);
@@ -44,27 +50,30 @@ export default function Home() {
   return (
     <main className="flex flex-col bg-slate-900 text-white min-h-screen">
       <Header/>
-      <section className="flex flex-1 items-center px-5 md:justify-center">
-        <div className="-translate-y-16">
+      <section className="flex flex-1 flex-col items-center px-5 pt-8">
+        <div className="w-full max-w-md">
           <SearchBar 
             onSearch={handleSearch}
             loading={loading}
           />
-        </div>
 
-        {error && (
-          <p className="mt-4 text-sm text-red-400">
-            {error}
-          </p>
-        )}
+          {error && (
+            <p className="mt-4 text-sm text-red-400">
+              {error}
+            </p>
+          )}  
 
         { weather && (
           <WeatherCard
             city={weather.city}
             temperature={weather.temperature}
             condition={weather.condition}
+            feelsLike={weather.feelsLike}
+            humidity={weather.humidity}
+            windSpeed={weather.windSpeed}
           />
         )}
+        </div>
       </section>
     </main>
   );
