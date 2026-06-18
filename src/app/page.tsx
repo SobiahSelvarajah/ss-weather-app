@@ -50,7 +50,7 @@ export default function Home() {
 
 
   return (
-    <main className="flex flex-col bg-slate-900 text-white min-h-screen">
+    <main className="min-h-screen bg-linear-to-b from-slate-950 via-slate-900 to-slate-800 text-white">
       <Header/>
       <section className="flex flex-1 flex-col items-center px-5 pt-8">
         <div className="w-full max-w-md">
