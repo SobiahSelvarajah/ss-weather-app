@@ -12,7 +12,8 @@ type WeatherData = {
   condition: string;
   feelsLike: number,
   humidity: number,
-  windSpeed: number
+  windSpeed: number,
+  icon: string
 };
 
 export default function Home() {
@@ -35,6 +36,7 @@ export default function Home() {
         feelsLike: data.main.feels_like,
         humidity: data.main.humidity,
         windSpeed: data.wind.speed,
+        icon: data.weather[0].icon
       });
     } catch(error) {
       console.error(error);
@@ -71,6 +73,7 @@ export default function Home() {
             feelsLike={weather.feelsLike}
             humidity={weather.humidity}
             windSpeed={weather.windSpeed}
+            icon={weather.icon}
           />
         )}
         </div>
