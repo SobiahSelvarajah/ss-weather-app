@@ -4,9 +4,13 @@ import { useState } from "react";
 
 type SearchBarProps = {
     onSearch: (location: string) => Promise<void>;
+    loading: boolean;
 };
 
-export default function SearchBar({onSearch}: SearchBarProps) {
+export default function SearchBar({
+    onSearch, 
+    loading,
+}: SearchBarProps) {
 
     const [location, setLocation] = useState("");
 
@@ -25,8 +29,8 @@ export default function SearchBar({onSearch}: SearchBarProps) {
 
     return (
         <form
-            className="flex flex-col w-full max-w-md gap-3 md:flex-row md:gap-0"
             onSubmit={handleSubmit}
+            className="flex flex-col w-full max-w-md gap-3 md:flex-row md:gap-0"
         >
             <input
                 value={location}
@@ -37,10 +41,11 @@ export default function SearchBar({onSearch}: SearchBarProps) {
             />
             <button
                 type="submit"
+                disabled={loading}
                 className="w-full rounded-full border border-white/20 bg-white/20 p-3 transition hover:bg-white/30 md:w-auto md:rounded-l-none"
             >
-                Search
+                {loading ? "Searching..." : "Search"}
             </button>
         </form>
     )
-}
+};

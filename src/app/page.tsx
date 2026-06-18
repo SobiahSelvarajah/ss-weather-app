@@ -15,8 +15,13 @@ type WeatherData = {
 export default function Home() {
 
   const [ weather, setWeather ] = useState<WeatherData | null>(null);
+  const [ loading, setLoading ] = useState(false);
+  const [ error, setError ] = useState("");
 
   const handleSearch = async (location: string)  => {
+    setLoading(true);
+    setError("");
+
     try {
       const data = await getWeather(location);
 
@@ -27,6 +32,11 @@ export default function Home() {
       });
     } catch(error) {
       console.error(error);
+
+      setWeather(null);
+      setError("Could not find that location.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -36,8 +46,18 @@ export default function Home() {
       <Header/>
       <section className="flex flex-1 items-center px-5 md:justify-center">
         <div className="-translate-y-16">
-          <SearchBar onSearch={handleSearch}/>
+          <SearchBar 
+            onSearch={handleSearch}
+            loading={loading}
+          />
         </div>
+
+        {error && (
+          <p className="mt-4 text-sm text-red-400">
+            {error}
+          </p>
+        )}
+
         { weather && (
           <WeatherCard
             city={weather.city}
