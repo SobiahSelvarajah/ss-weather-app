@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import SearchBar from "@/components/search/SearchBar";
 import WeatherCard from "@/components/weather/WeatherCard";
 import { getWeather } from "@/services/WeatherService";
+import ActivitySuggestions from "@/components/activities/ActivitySuggestions";
 
 type WeatherData = {
   city: string;
@@ -66,15 +67,20 @@ export default function Home() {
           )}  
 
         { weather && (
-          <WeatherCard
-            city={weather.city}
-            temperature={weather.temperature}
-            condition={weather.condition}
-            feelsLike={weather.feelsLike}
-            humidity={weather.humidity}
-            windSpeed={weather.windSpeed}
-            icon={weather.icon}
-          />
+          <>
+            <WeatherCard
+              city={weather.city}
+              temperature={weather.temperature}
+              condition={weather.condition}
+              feelsLike={weather.feelsLike}
+              humidity={weather.humidity}
+              windSpeed={weather.windSpeed}
+              icon={weather.icon}
+            />
+            <ActivitySuggestions
+              condition={weather.condition}
+            />          
+          </>
         )}
         </div>
       </section>
