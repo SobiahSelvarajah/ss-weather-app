@@ -20,10 +20,13 @@ type WeatherData = {
 export default function Home() {
 
   const [ weather, setWeather ] = useState<WeatherData | null>(null);
+  const [ searchCount, setSearchCount ] = useState(0);
   const [ loading, setLoading ] = useState(false);
   const [ error, setError ] = useState("");
 
+
   const handleSearch = async (location: string)  => {
+    setSearchCount(prev => prev + 1);
     setLoading(true);
     setError("");
 
@@ -79,6 +82,7 @@ export default function Home() {
             />
             <ActivitySuggestions
               condition={weather.condition}
+              searchCount={searchCount}
             />          
           </>
         )}
