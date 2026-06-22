@@ -10,47 +10,51 @@ export default function ActivitySuggestions ({
     condition,
     searchCount,
 }: ActivitySuggestionsProps) {
-    const activities: Record<string, string[]> = {
+
+    type Activity = {
+        icon: string;
+        text: string;
+    };
+    const activities: Record<string, Activity[]> = {
+
         Clear: [
-            "Go for a walk",
-            "Visit a local park",
-            "Have a picnic",
-            "Go bird watching",
-            "Do some gardening",
-            "Put the barbecue on",
+            {icon: "🚶", text: "Go for a walk"},
+            {icon: "🌳", text: "Visit a local park"},
+            {icon: "🧺", text: "Have a picnic"},
+            {icon: "🦜", text: "Go bird watching"},
+            {icon: "🌱", text: "Do some gardening"},
+            {icon: "🍖", text: "Put the barbecue on"},
         ],
         Clouds: [
-            "Visit a cafe",
-            "Read a book",
-            "Explore a museum",
-            "Visit a greenhouse",
-            "Piece together jigsaw puzzles",
-            "Catch up on a podcast",
-            "Do some journalling",
-
+            {icon: "☕", text: "Visit a cafe"},
+            {icon: "📚", text: "Read a book"},
+            {icon: "🏛️", text: "Explore a museum"},
+            {icon: "🧩", text: "Piece together jigsaw puzzles"},
+            {icon: "🎙️", text: "Catch up on a podcast"},
+            {icon: "✍🏻", text: "Do some journalling"}
         ],
         Rain: [
-            "Have a cozy movie night in",
-            "Try a new recipe",
-            "Play some board games",
-            "Visit an indoor attraction",
-            "Host an indoor treasure hunt",
-            "Play a mystery murder game",
+            {icon: "🍿", text: "Have a cozy movie night in"},
+            {icon: "👨‍🍳", text: "Try a new recipe"},
+            {icon: "🎲", text: "Play some board games"},
+            {icon: "🗺", text: "Visit an indoor attraction"},
+            {icon: "🔍", text: "Host an indoor treasure hunt"},
+            {icon: "🕵️", text: "Play a mystery murder game"}
         ],
         Snow: [
-            "Build a snowman",
-            "Make snow angels",
-            "Enjoy a hot chocolate",
-            "Make toasted marshmallows",
-            "Sled the day away",
+            {icon: "⛄", text: "Build a snowman"},
+            {icon: "❄️", text: "Make snow angels"},
+            {icon: "🍫", text: "Enjoy a hot chocolate"},
+            {icon: "🖱️", text: "Make toasted marshmallows"},
+            {icon: "🛷", text: "Sled the day away"}
         ],
     };
 
-    const defaultActivities = [
-        "Enjoy your day",
-        "Try something new",
-        "Stay active",
-        "Explore somewhere new",
+    const defaultActivities: Activity[] = [
+        {icon: "😊", text: "Enjoy your day"},
+        {icon: "✨", text: "Try something new"},
+        {icon: "🏃", text: "Stay active"},
+        {icon: "🌍", text: "Explore somewhere new"}
     ];
 
     const suggestions = useMemo(() => {
@@ -59,21 +63,24 @@ export default function ActivitySuggestions ({
             .slice(0, 3);
     }, [condition, searchCount]);
 
-    // const suggestions = [
-    //     ...(activities[condition] ?? defaultActivities)
-    // ]
-    //     .sort(() => 0.5 - Math.random())
-    //     .slice(0, 3);
 
     return (
         <section className="mt-6 w-full rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-            <h3 className="text-lg font-medium">
+            <h3 className="text-lg font-medium pb-3">
                 Suggested Activities
             </h3>
             <ul className="mt-4 space-y-2">
                 {suggestions.map((activity) => (
-                    <li key={activity}>
-                         • {activity}
+                    <li 
+                        key={activity.text}
+                        className="flex items-center rounded-xl border border-white/10 bg-white/5 p-3"
+                    >
+                        <span className="mr-2 text-lg">
+                            {activity.icon}
+                        </span>
+                        <span>
+                            {activity.text}
+                        </span>
                     </li>
                 ))}
             </ul>

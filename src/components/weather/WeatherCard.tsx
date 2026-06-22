@@ -33,7 +33,7 @@ export default function WeatherCard({
                 <img 
                     src={`https://openweathermap.org/img/wn/${icon}@2x.png`} 
                     alt={condition}
-                    className="h-20 w-20"
+                    className="h-20 w-20 md:h-25 md:w-25"
                 />                
             </header>
 
