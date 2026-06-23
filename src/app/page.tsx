@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import SearchBar from "@/components/search/SearchBar";
 import WeatherCard from "@/components/weather/WeatherCard";
 import { getWeather } from "@/services/WeatherService";
+import { weatherThemes, defaultTheme } from "@/data/weatherThemes";
 import ActivitySuggestions from "@/components/activities/ActivitySuggestions";
 
 type WeatherData = {
@@ -52,9 +53,12 @@ export default function Home() {
     }
   };
 
+  const theme = weather
+      ? weatherThemes[ weather.condition ] ?? defaultTheme
+      : defaultTheme;
 
   return (
-    <main className="min-h-screen bg-linear-to-b from-slate-950 via-slate-900 to-slate-800 text-white">
+    <main className={`min-h-screen bg-linear-to-b ${theme} text-white flex flex-col transition-all duration-700`}>
       <Header/>
       <section className="flex flex-1 flex-col items-center px-5 pt-8">
         <div className="w-full max-w-md">
