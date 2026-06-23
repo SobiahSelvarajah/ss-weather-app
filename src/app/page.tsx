@@ -60,15 +60,15 @@ export default function Home() {
   return (
     <main className={`min-h-screen bg-linear-to-b ${theme} text-white flex flex-col transition-all duration-700`}>
       <Header/>
-      <section className="flex flex-1 flex-col items-center px-5 pt-8">
-        <div className="w-full max-w-md">
+      <section className="flex flex-1 flex-col items-center px-5 pt-10">
+        <div className="w-full max-w-md space-y-6">
           <SearchBar 
             onSearch={handleSearch}
             loading={loading}
           />
 
           {error && (
-            <p className="mt-4 text-sm text-red-400">
+            <p className="text-sm text-red-400">
               {error}
             </p>
           )}  
