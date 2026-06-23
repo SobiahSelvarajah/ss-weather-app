@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Header from "@/components/layout/Header";
 import SearchBar from "@/components/search/SearchBar";
+import EmptyState from "@/components/ui/EmptyState";
 import WeatherCard from "@/components/weather/WeatherCard";
 import { getWeather } from "@/services/WeatherService";
 import { weatherThemes, defaultTheme } from "@/data/weatherThemes";
@@ -60,12 +61,16 @@ export default function Home() {
   return (
     <main className={`min-h-screen bg-linear-to-b ${theme} text-white flex flex-col transition-all duration-700`}>
       <Header/>
-      <section className="flex flex-1 flex-col items-center px-5 pt-10">
-        <div className="w-full max-w-md space-y-6">
+      <section className="flex flex-1 flex-col items-center px-5 py-30">
+        <div className="w-full max-w-md space-y-16">
           <SearchBar 
             onSearch={handleSearch}
             loading={loading}
           />
+
+          {!weather && !error && (
+            <EmptyState />
+          )}
 
           {error && (
             <p className="text-sm text-red-400">
