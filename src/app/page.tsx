@@ -4,20 +4,12 @@ import { useState } from "react";
 import Header from "@/components/layout/Header";
 import SearchBar from "@/components/search/SearchBar";
 import EmptyState from "@/components/ui/EmptyState";
+import { WeatherData } from "@/services/weatherTypes";
 import WeatherCard from "@/components/weather/WeatherCard";
 import { getWeather } from "@/services/WeatherService";
 import { weatherThemes, defaultTheme } from "@/data/weatherThemes";
 import ActivitySuggestions from "@/components/activities/ActivitySuggestions";
 
-type WeatherData = {
-  city: string;
-  temperature: number;
-  condition: string;
-  feelsLike: number,
-  humidity: number,
-  windSpeed: number,
-  icon: string
-};
 
 export default function Home() {
 

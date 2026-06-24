@@ -1,0 +1,11 @@
+
+
+export type WeatherData = {
+    city: string;
+    temperature: number;
+    condition: string;
+    feelsLike: number,
+    humidity: number,
+    windSpeed: number,
+    icon: string
+};
