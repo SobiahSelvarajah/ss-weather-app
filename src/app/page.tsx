@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import SearchBar from "@/components/search/SearchBar";
 import EmptyState from "@/components/ui/EmptyState";
 import { WeatherData } from "@/services/weatherTypes";
+import { mapWeatherData } from "@/services/weatherMapper";
 import WeatherCard from "@/components/weather/WeatherCard";
 import { getWeather } from "@/services/WeatherService";
 import { weatherThemes, defaultTheme } from "@/data/weatherThemes";
@@ -26,16 +27,8 @@ export default function Home() {
 
     try {
       const data = await getWeather(location);
+      setWeather(mapWeatherData(data));
 
-      setWeather({
-        city: data.name,
-        temperature: data.main.temp,
-        condition: data.weather[0].main,
-        feelsLike: data.main.feels_like,
-        humidity: data.main.humidity,
-        windSpeed: data.wind.speed,
-        icon: data.weather[0].icon
-      });
     } catch(error) {
       console.error(error);
 
