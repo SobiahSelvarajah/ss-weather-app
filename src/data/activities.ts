@@ -47,4 +47,3 @@ export const defaultActivities: Activity[] = [
     {icon: "🏃", text: "Stay active"},
     {icon: "🌍", text: "Explore somewhere new"}
 ];
-

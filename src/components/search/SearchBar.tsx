@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+
 type SearchBarProps = {
     onSearch: (location: string) => Promise<void>;
     loading: boolean;

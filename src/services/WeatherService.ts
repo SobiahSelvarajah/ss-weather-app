@@ -2,6 +2,7 @@
 
 const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY 
 
+
 export async function getWeather( location: string ) {
     
     const response = await fetch(

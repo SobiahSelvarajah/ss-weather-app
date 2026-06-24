@@ -1,5 +1,5 @@
-
 import type { WeatherData } from "./weatherTypes";
+
 
 export const mapWeatherData = (data: any): WeatherData => ({
     city: data.name,

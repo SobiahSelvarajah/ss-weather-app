@@ -12,3 +12,9 @@ export const weatherThemes: Record<string, string> = {
 export const defaultTheme = 
     "from-slate-800 via-slate-900 to-black";
 
+
+export const getWeatherTheme = (condition?: string): string => {
+    if (!condition) return defaultTheme;
+
+    return weatherThemes[condition] ?? defaultTheme
+};

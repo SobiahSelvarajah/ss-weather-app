@@ -4,11 +4,11 @@ import { useState } from "react";
 import Header from "@/components/layout/Header";
 import SearchBar from "@/components/search/SearchBar";
 import EmptyState from "@/components/ui/EmptyState";
-import { WeatherData } from "@/services/weatherTypes";
+import type { WeatherData } from "@/services/weatherTypes";
 import { mapWeatherData } from "@/services/weatherMapper";
 import WeatherCard from "@/components/weather/WeatherCard";
 import { getWeather } from "@/services/WeatherService";
-import { weatherThemes, defaultTheme } from "@/data/weatherThemes";
+import { getWeatherTheme } from "@/data/weatherThemes";
 import ActivitySuggestions from "@/components/activities/ActivitySuggestions";
 
 
@@ -18,7 +18,6 @@ export default function Home() {
   const [ searchCount, setSearchCount ] = useState(0);
   const [ loading, setLoading ] = useState(false);
   const [ error, setError ] = useState("");
-
 
   const handleSearch = async (location: string)  => {
     setSearchCount(prev => prev + 1);
@@ -39,10 +38,9 @@ export default function Home() {
     }
   };
 
-  const theme = weather
-      ? weatherThemes[ weather.condition ] ?? defaultTheme
-      : defaultTheme;
+  const theme = getWeatherTheme(weather?.condition);
 
+  
   return (
     <main className={`min-h-screen bg-linear-to-b ${theme} text-white flex flex-col transition-all duration-700`}>
       <Header/>
@@ -65,15 +63,7 @@ export default function Home() {
 
         {weather && (
           <div key={`${weather.city}-${searchCount}`} className="fade-in-up">
-            <WeatherCard
-              city={weather.city}
-              temperature={weather.temperature}
-              condition={weather.condition}
-              feelsLike={weather.feelsLike}
-              humidity={weather.humidity}
-              windSpeed={weather.windSpeed}
-              icon={weather.icon}
-            />
+            <WeatherCard weather={weather} />
             <ActivitySuggestions
               condition={weather.condition}
               searchCount={searchCount}

@@ -18,7 +18,7 @@ export default function ActivitySuggestions ({
             .slice(0, 3);
     }, [condition, searchCount]);
 
-
+    
     return (
         <section className=" fade-in-up mt-6 w-full rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
             <h3 className="text-lg font-medium pb-3">
