@@ -19,7 +19,7 @@ export default function WeatherCard({
     icon
 }: WeatherCardProps) {
     return (
-        <article className="mt-6 w-full rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl shadow-2xl">
+        <article className="fade-in-up mt-6 w-full max-w-md rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur-md">
             <header className="flex items-center justify-between">
                 <div>
                     <h2 className="text-3xl font-light tracking-tight">

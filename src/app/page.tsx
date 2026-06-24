@@ -78,8 +78,8 @@ export default function Home() {
             </p>
           )}  
 
-        { weather && (
-          <>
+        {weather && (
+          <div key={`${weather.city}-${searchCount}`} className="fade-in-up">
             <WeatherCard
               city={weather.city}
               temperature={weather.temperature}
@@ -93,7 +93,7 @@ export default function Home() {
               condition={weather.condition}
               searchCount={searchCount}
             />          
-          </>
+          </div>
         )}
         </div>
       </section>
