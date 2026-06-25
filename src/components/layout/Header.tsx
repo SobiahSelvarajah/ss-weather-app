@@ -10,6 +10,14 @@ export default function Header() {
                 <p className="mt-3 max-w-md text-sm font-medium text-slate-400 md:text-base lg:mx-auto">
                     Weather, activities and music tailored to your day.
                 </p>
+                <a 
+                    href="https://github.com/SobiahSelvarajah/ss-weather-app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm transition hover:bg-white/10"
+                >
+                    View Source →
+                </a>
             </div>
         </section>
     ) 
