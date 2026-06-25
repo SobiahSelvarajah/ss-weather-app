@@ -10,6 +10,7 @@ import WeatherCard from "@/components/weather/WeatherCard";
 import { getWeather } from "@/services/WeatherService";
 import { getWeatherTheme } from "@/data/weatherThemes";
 import ActivitySuggestions from "@/components/activities/ActivitySuggestions";
+import MusicRecommendations from "@/components/music/MusicRecommendations";
 
 
 export default function Home() {
@@ -67,7 +68,11 @@ export default function Home() {
             <ActivitySuggestions
               condition={weather.condition}
               searchCount={searchCount}
-            />          
+            />    
+            <MusicRecommendations
+              condition={weather.condition}
+              searchCount={searchCount}
+            />      
           </div>
         )}
         </div>

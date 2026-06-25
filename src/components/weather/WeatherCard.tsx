@@ -19,14 +19,12 @@ export default function WeatherCard({
                         {weather.condition}
                     </p>                    
                 </div>
-
                 <img 
                     src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`} 
                     alt={weather.condition}
                     className="h-20 w-20 md:h-25 md:w-25"
                 />                
             </header>
-
             <p className="mt-4 text-6xl font-extralight tracking-tight">
                 {Math.round(weather.temperature)}°
             </p>            
@@ -37,7 +35,7 @@ export default function WeatherCard({
                     ["Wind", `${weather.windSpeed} m/s`],
                 ].map(([label, value]) => (
                     <article key={label} className="text-center">
-                        <p className="text-sm uppercase tracking-wider text-slate-500">
+                        <p className="text-sm uppercase tracking-wider text-slate-400">
                             {label}
                         </p>
                         <p className="mt-2 text-lg font-medium">
