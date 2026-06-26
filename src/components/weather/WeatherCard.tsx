@@ -17,7 +17,10 @@ export default function WeatherCard({
                     </h2>
                     <p className="mt-1 text-slate-400">
                         {weather.condition}
-                    </p>                    
+                    </p>   
+                    <p className="mt-1 text-xs text-slate-400">
+                        Last updated {weather.lastUpdated}
+                    </p>                 
                 </div>
                 <img 
                     src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`} 

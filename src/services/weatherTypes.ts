@@ -7,5 +7,6 @@ export type WeatherData = {
     feelsLike: number,
     humidity: number,
     windSpeed: number,
-    icon: string
+    icon: string,
+    lastUpdated: string;
 };
