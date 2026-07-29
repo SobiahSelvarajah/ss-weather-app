@@ -1,6 +1,7 @@
 
 # Weather app
-An interactive weather app experience that combines real-time weather data, personalised activity suggestions, and curated music recommendations based on the mood of the day.
+A responsive weather application built with Next.js, React, TypeScript, and Tailwind CSS.
+The app lets users search for a location and receive current weather information alongside a mood recommendation and a music suggestion based on the weather.
 
 
 ## ✨ Features
@@ -13,6 +14,7 @@ An interactive weather app experience that combines real-time weather data, pers
 ## ⚙️ Tech Stack
 - Next.js
 - React
+- TypeScript
 - Tailwind CSS
 - OpenWeather API
 - Spotify Web API
@@ -20,6 +22,8 @@ An interactive weather app experience that combines real-time weather data, pers
 
 ## Project Status
 🚧 In active development
+
+This project is being developed as a portfolio project to explore modern React and Next.js development, API integration, responsive UI design, and interactive user experiences.
 
 
 ## License
