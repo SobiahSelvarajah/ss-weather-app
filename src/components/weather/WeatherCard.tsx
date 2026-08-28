@@ -22,11 +22,13 @@ export default function WeatherCard({
                         Last updated {weather.lastUpdated}
                     </p>                 
                 </div>
-                <img 
-                    src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`} 
-                    alt={weather.condition}
-                    className="h-20 w-20 md:h-25 md:w-25"
-                />                
+                <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-white/20 bg-white/10 p-2 backdrop-blur-sm md:h-24 md:w-24">
+                    <img 
+                        src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`} 
+                        alt={weather.condition}
+                        className="h-full w-full object-contain"
+                    />  
+                </div>           
             </header>
             <p className="mt-4 text-6xl font-extralight tracking-tight">
                 {Math.round(weather.temperature)}°
