@@ -45,8 +45,8 @@ export default function Home() {
   return (
     <main className={`min-h-screen bg-linear-to-b ${theme} text-white flex flex-col transition-all duration-700`}>
       <Header/>
-      <section className="flex flex-1 flex-col items-center px-5 py-30">
-        <div className="w-full max-w-md space-y-16">
+      <section className="flex flex-1 flex-col items-center px-7 pb-12 pt-10 sm:px-6 sm:py-20 lg:px-5 lg:py-30">
+        <div className="w-full max-w-md space-y-10 sm:space-y-12 lg:space-y-16">
           <SearchBar 
             onSearch={handleSearch}
             loading={loading}
