@@ -9,7 +9,7 @@ export default function WeatherCard({
     weather,
 }: WeatherCardProps) {
     return (
-        <article className="fade-in-up mt-6 w-full max-w-md rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur-md">
+        <article className="h-full w-full rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur-md">
             <header className="flex items-center justify-between">
                 <div>
                     <h2 className="text-3xl font-light tracking-tight">

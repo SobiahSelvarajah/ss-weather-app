@@ -20,11 +20,11 @@ export default function MusicRecommendations ({
 
 
     return (
-        <section className="mt-6 w-full rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+        <section className="w-full rounded-3xl border border-white/10 bg-white/5 px-6 py-8 backdrop-blur-xl">
             <h3 className="text-lg font-medium">
                 Music for the vibe
             </h3>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
                 {songs.map((song) => (
                     <li key={`${song.title}-${song.artist}`}>
                         <a 
@@ -33,14 +33,14 @@ export default function MusicRecommendations ({
                             rel="noopener noreferrer"
                             className="block rounded-xl border border-white/10 bg-white/5 p-3 transition hover:bg-white/10 hover:border-white/20"
                         >
-                            <p className="mt-2 text-xs text-slate-400">
-                                Open in Spotify →
-                            </p>
                             <p className="font-medium">
                                 🎵 {song.title}
                             </p>
                             <p className="mt-1 text-sm text-slate-300">
                                 {song.artist}
+                            </p>
+                            <p className="mt-2 text-xs text-slate-400">
+                                Open in Spotify →
                             </p>
                         </a>
                     </li>

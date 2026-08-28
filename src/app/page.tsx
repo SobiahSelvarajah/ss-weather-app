@@ -46,35 +46,45 @@ export default function Home() {
     <main className={`min-h-screen bg-linear-to-b ${theme} text-white flex flex-col transition-all duration-700`}>
       <Header/>
       <section className="flex flex-1 flex-col items-center px-7 pb-12 pt-10 sm:px-6 sm:py-20 lg:px-5 lg:py-30">
-        <div className="w-full max-w-md space-y-10 sm:space-y-12 lg:space-y-16">
-          <SearchBar 
-            onSearch={handleSearch}
-            loading={loading}
-          />
+        <div className="w-full max-w-5xl">
+          <div className="mx-auto w-full max-w-md">
+            <SearchBar 
+              onSearch={handleSearch}
+              loading={loading}
+            />
 
-          {!weather && !error && (
-            <EmptyState />
-          )}
+            {!weather && !error && (
+              <div className="mt-10">
+                <EmptyState />
+              </div>
+            )}
 
-          {error && (
-            <p className="text-sm text-red-400">
-              {error}
-            </p>
-          )}  
-
-        {weather && (
-          <div key={`${weather.city}-${searchCount}`} className="fade-in-up">
-            <WeatherCard weather={weather} />
-            <ActivitySuggestions
-              condition={weather.condition}
-              searchCount={searchCount}
-            />    
-            <MusicRecommendations
-              condition={weather.condition}
-              searchCount={searchCount}
-            />      
+            {error && (
+              <p className="mt-6 text-sm text-red-400">
+                {error}
+              </p>
+            )}  
           </div>
-        )}
+
+          {weather && (
+            <div 
+              key={`${weather.city}-${searchCount}`} 
+              className="fade-in-up mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 md:items-stretch"
+            >
+              <WeatherCard weather={weather} />
+              <ActivitySuggestions
+                condition={weather.condition}
+                searchCount={searchCount}
+              />    
+              <div className="md:col-span-2">
+                <MusicRecommendations
+                  condition={weather.condition}
+                  searchCount={searchCount}
+                />                  
+              </div>
+    
+            </div>
+          )}
         </div>
       </section>
     </main>
