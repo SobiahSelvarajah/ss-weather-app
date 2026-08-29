@@ -76,7 +76,7 @@ export default function Home() {
                 condition={weather.condition}
                 searchCount={searchCount}
               />    
-              <div className="md:col-span-2">
+              <div className="-mx-4 md:col-span-2 md:mx-0">
                 <MusicRecommendations
                   condition={weather.condition}
                   searchCount={searchCount}
