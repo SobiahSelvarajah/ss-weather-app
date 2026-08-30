@@ -7,8 +7,9 @@ import EmptyState from "@/components/ui/EmptyState";
 import type { WeatherData } from "@/services/weatherTypes";
 import { mapWeatherData } from "@/services/weatherMapper";
 import WeatherCard from "@/components/weather/WeatherCard";
-import { getWeather } from "@/services/WeatherService";
+import { getWeather, getForecast } from "@/services/WeatherService";
 import { getWeatherTheme } from "@/data/weatherThemes";
+import { mapForecastData } from "@/services/forecastMapper";
 import ActivitySuggestions from "@/components/activities/ActivitySuggestions";
 import MusicRecommendations from "@/components/music/MusicRecommendations";
 
@@ -26,6 +27,11 @@ export default function Home() {
 
     try {
       const data = await getWeather(location);
+      const forecastData = await getForecast(location);
+
+      const mappedForecast = mapForecastData(forecastData);
+
+      console.log("Forecast:", mappedForecast);
 
       setWeather(mapWeatherData(data));
       setSearchCount(prev => prev + 1)
