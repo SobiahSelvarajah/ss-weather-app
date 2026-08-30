@@ -15,3 +15,15 @@ export async function getWeather( location: string ) {
 
     return response.json();
 };
+
+export async function getForecast(location: string) {
+    const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}&units=metric`
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to fetch forecast");
+    }
+
+    return response.json();
+}

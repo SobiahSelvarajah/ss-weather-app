@@ -10,3 +10,13 @@ export type WeatherData = {
     icon: string,
     lastUpdated: string;
 };
+
+
+export type ForecastDay = {
+    date: string;
+    day: string;
+    condition: string;
+    icon: string;
+    minTemperature: number;
+    maxTemperature: number;
+};
