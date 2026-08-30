@@ -21,19 +21,19 @@ export default function Home() {
   const [ error, setError ] = useState("");
 
   const handleSearch = async (location: string)  => {
-    setSearchCount(prev => prev + 1);
     setLoading(true);
     setError("");
 
     try {
       const data = await getWeather(location);
+
       setWeather(mapWeatherData(data));
-
-    } catch(error) {
-      console.error(error);
-
+      setSearchCount(prev => prev + 1)
+    } catch {
       setWeather(null);
-      setError("Could not find that location.");
+      setError(
+        "We couldn't find that location. Please check the spelling and try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -51,6 +51,7 @@ export default function Home() {
             <SearchBar 
               onSearch={handleSearch}
               loading={loading}
+              clearError={() => setError("")}
             />
 
             {!weather && !error && (
@@ -60,7 +61,10 @@ export default function Home() {
             )}
 
             {error && (
-              <p className="mt-6 text-sm text-red-400">
+              <p 
+                role="alert"
+                className="mt-5 px-5 text-sm text-red-300"
+              >
                 {error}
               </p>
             )}  
