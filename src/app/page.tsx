@@ -1,55 +1,31 @@
 "use client";
 
-import { useState } from "react";
+
 import Header from "@/components/layout/Header";
 import SearchBar from "@/components/search/SearchBar";
 import EmptyState from "@/components/ui/EmptyState";
-import type { ForecastDay, WeatherData } from "@/services/weatherTypes";
-import { mapWeatherData } from "@/services/weatherMapper";
 import WeeklyForecast from "@/components/weather/WeeklyForecast";
 import WeatherCard from "@/components/weather/WeatherCard";
-import { getWeather, getForecast } from "@/services/WeatherService";
-import { getWeatherTheme } from "@/data/weatherThemes";
-import { mapForecastData } from "@/services/forecastMapper";
 import ActivitySuggestions from "@/components/activities/ActivitySuggestions";
 import MusicRecommendations from "@/components/music/MusicRecommendations";
+import { getWeatherTheme } from "@/data/weatherThemes";
+import { useWeatherSearch } from "@/hooks/useWeatherSearch";
 
 
 export default function Home() {
-
-  const [ weather, setWeather ] = useState<WeatherData | null>(null);
-  const [ forecast, setForecast ] = useState<ForecastDay[]>([]);
-  const [ searchCount, setSearchCount ] = useState(0);
-  const [ loading, setLoading ] = useState(false);
-  const [ error, setError ] = useState("");
-
-  const handleSearch = async (location: string)  => {
-    setLoading(true);
-    setError("");
-
-    try {
-      const [weatherData, forecastData] = await Promise.all([
-        getWeather(location),
-        getForecast(location),
-      ]);
-
-      setWeather(mapWeatherData(weatherData));
-      setForecast(mapForecastData(forecastData));
-      setSearchCount(prev => prev + 1)
-    } catch {
-      setWeather(null);
-      setForecast([]);
-      setError(
-        "We couldn't find that location. Please check the spelling and try again."
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  const {
+    weather,
+    forecast,
+    searchCount,
+    loading,
+    error,
+    handleSearch,
+    clearError,
+  } = useWeatherSearch();
+    
   const theme = getWeatherTheme(weather?.condition);
-
-  
+    
+    
   return (
     <main className={`min-h-screen bg-linear-to-b ${theme} text-white flex flex-col transition-all duration-700`}>
       <Header/>
@@ -59,7 +35,7 @@ export default function Home() {
             <SearchBar 
               onSearch={handleSearch}
               loading={loading}
-              clearError={() => setError("")}
+              clearError={clearError}
             />
 
             {!weather && !error && (
@@ -87,7 +63,7 @@ export default function Home() {
           {weather && (
             <div 
               key={`${weather.city}-${searchCount}`} 
-              className="fade-in-up mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 md:items-stretch"
+            className="fade-in-up mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 md:items-stretch"
             >
               <WeatherCard weather={weather} />
               <ActivitySuggestions
@@ -106,4 +82,4 @@ export default function Home() {
       </section>
     </main>
   );
-}
+};
