@@ -11,7 +11,7 @@ The project focuses on combining external API data with dynamic UI behaviour, re
 
 ## 🔗 Live Demo
 
-Coming soon.
+**[View Weather Forecast Live](https://ss-weather-app.vercel.app/)**
 
 
 
@@ -182,7 +182,7 @@ The current application is feature-complete, with several possible extensions pl
 
 ## 📌 Project Status 
 
-Weather Forecast is feature-complete and ready for deployment.
+Weather Forecast is feature-complete and deployed on Vercel.
 
 
 
