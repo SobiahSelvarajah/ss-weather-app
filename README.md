@@ -67,48 +67,33 @@ Coming soon.
 ## 💡 Technical Decisions
 
 ### Parallel Weather Requests
-
-Current weather and forecast data are fetched concurrently using `Promise.all`.
-
-This avoids waiting for one request to complete before beginning the other and allows the application to retrieve both datasets efficiently. 
+* Current weather and forecast data are fetched concurrently using `Promise.all`.
+* This avoids waiting for one request to complete before beginning the other and al*lows the application to retrieve both datasets efficiently. 
 
 ### Forecast Data Transformation
-
-OpenWeather provides forecast readings in three-hour intervals.
-
-A dedicated forecast mapper groups these readings by local calender day and transforms them into a simplified daily forecast containing the condition, weather icon and minimum and maximum temperatures.
-
-A reading closest to midday is used to represent the day's overall weather condition and icon rather than relying on an overnight reading.
+* OpenWeather provides forecast readings in three-hour intervals.
+* A dedicated forecast mapper groups these readings by local calender day and transforms them into a simplified daily forecast containing the condition, weather icon and minimum and maximum temperatures.
+* A reading closest to midday is used to represent the day's overall weather condition and icon rather than relying on an overnight reading.
 
 ### Weather-Based Theming 
-
-The application's background changes according to the current weather condition.
-
-Clear, cloudy, rainy, snowy and stormy conditions each use a dedicated gradient theme, while unsupported conditions fall back to a default theme.
+* The application's background changes according to the current weather condition.
+* Clear, cloudy, rainy, snowy and stormy conditions each use a dedicated gradient theme, while unsupported conditions fall back to a default theme.
 
 ### Contextual Recommendations
-
-Activity and music recommendations are mapped to weather conditions.
-
-Each successful search selects three recommendations from the appropriate collection, allowing repeated searches to provide variation while remaining relevant to the current weather.
+* Activity and music recommendations are mapped to weather conditions.
+* Each successful search selects three recommendations from the appropriate collection, allowing repeated searches to provide variation while remaining relevant to the current weather.
 
 ### Responsive Forecast Navigation
-
-The five-day forecast is displayed as a full horizontal strip on tablet and desktop layouts.
-
-On smaller mobile screens, the forecast becomes horizontally scrollable with navigation controls to preserve readability without compressing each day's information.
+* The five-day forecast is displayed as a full horizontal strip on tablet and desktop layouts.
+* On smaller mobile screens, the forecast becomes horizontally scrollable with navigation controls to preserve readability without compressing each day's information.
 
 ### Spotify Integration
-
-Music recommendations use Spotify embeds, allowing users to interact with recommended tracks directly from the weather interface while retaining access to Spotify where appropriate.
-
-The integration deliberately uses lightweight embeds rather than requiring Spotify authentication or managing playback state within the application.
+* Music recommendations use Spotify embeds, allowing users to interact with recommended tracks directly from the weather interface while retaining access to Spotify where appropriate.
+* The integration deliberately uses lightweight embeds rather than requiring Spotify authentication or managing playback state within the application.
 
 ### Search and Error Handling 
-
-Empty searches are validated before an API request is made.
-
-Invalid locations return clear user-facing feedback, while stale errors are cleared when the user begins a new search. Loading states also prevent duplicate searches while weather data is being retrieved.
+* Empty searches are validated before an API request is made.
+* Invalid locations return clear user-facing feedback, while stale errors are cleared when the user begins a new search. Loading states also prevent duplicate searches while weather data is being retrieved.
 
 
 
