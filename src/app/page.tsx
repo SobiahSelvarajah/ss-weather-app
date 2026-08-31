@@ -4,8 +4,9 @@ import { useState } from "react";
 import Header from "@/components/layout/Header";
 import SearchBar from "@/components/search/SearchBar";
 import EmptyState from "@/components/ui/EmptyState";
-import type { WeatherData } from "@/services/weatherTypes";
+import type { ForecastDay, WeatherData } from "@/services/weatherTypes";
 import { mapWeatherData } from "@/services/weatherMapper";
+import WeeklyForecast from "@/components/weather/WeeklyForecast";
 import WeatherCard from "@/components/weather/WeatherCard";
 import { getWeather, getForecast } from "@/services/WeatherService";
 import { getWeatherTheme } from "@/data/weatherThemes";
@@ -17,6 +18,7 @@ import MusicRecommendations from "@/components/music/MusicRecommendations";
 export default function Home() {
 
   const [ weather, setWeather ] = useState<WeatherData | null>(null);
+  const [ forecast, setForecast ] = useState<ForecastDay[]>([]);
   const [ searchCount, setSearchCount ] = useState(0);
   const [ loading, setLoading ] = useState(false);
   const [ error, setError ] = useState("");
@@ -26,17 +28,17 @@ export default function Home() {
     setError("");
 
     try {
-      const data = await getWeather(location);
-      const forecastData = await getForecast(location);
+      const [weatherData, forecastData] = await Promise.all([
+        getWeather(location),
+        getForecast(location),
+      ]);
 
-      const mappedForecast = mapForecastData(forecastData);
-
-      console.log("Forecast:", mappedForecast);
-
-      setWeather(mapWeatherData(data));
+      setWeather(mapWeatherData(weatherData));
+      setForecast(mapForecastData(forecastData));
       setSearchCount(prev => prev + 1)
     } catch {
       setWeather(null);
+      setForecast([]);
       setError(
         "We couldn't find that location. Please check the spelling and try again."
       );
@@ -76,6 +78,12 @@ export default function Home() {
             )}  
           </div>
 
+          {forecast.length > 0 && (
+            <div className="mt-10">
+              <WeeklyForecast forecast={forecast} />
+            </div>
+          )}
+
           {weather && (
             <div 
               key={`${weather.city}-${searchCount}`} 
@@ -92,7 +100,6 @@ export default function Home() {
                   searchCount={searchCount}
                 />                  
               </div>
-    
             </div>
           )}
         </div>
