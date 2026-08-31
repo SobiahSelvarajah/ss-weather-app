@@ -41,7 +41,7 @@ export default function WeeklyForecast({
                     ref={scrollRef}
                     className="min-w-0 flex-1 overflow-x-auto scroll-smooth"
                 >
-                    <ul className="flex min-w-max gap-3 md:grid md:min-w-0 md:grid-cols-5">
+                    <ul className="flex min-w-max gap-3 md:grid md:min-w-0 md:grid-cols-5 lg:gap-8">
                         {forecast.map((day) => (
                             <li
                                 key={day.date}
